@@ -8,6 +8,8 @@ import { Home ,Settings} from './src/screens/Index';
 import AddIcon from './src/components/AddIcon';
 import AppModal from "./src/components/AppModal"
 import {Entypo,Ionicons} from '@expo/vector-icons'
+import getFonts from './src/helpers/fonts';
+import { openModal } from './src/store/reducer/ui/ModalSlice';
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
@@ -23,7 +25,17 @@ const screenOptions = {
     background:"#fff"
   }
 }
+
+
+
 export default function App() {
+
+  const fonts = getFonts();
+
+  if (!fonts) {
+    return <Text> loading .. </Text>;
+  }
+
   return (
     <Provider store={store}>
     <AppModal />
@@ -44,9 +56,15 @@ export default function App() {
           }}
 
         />
-       <Tab.Screen
+        <Tab.Screen
             name="AddIcon"
             component={AddIcon}
+            listeners={({ navigation }) => ({
+              tabPress: (event) => {
+                event.preventDefault();
+                store.dispatch(openModal({ componentName: "AddTaxi" }));
+              },
+            })}
             options={{
               tabBarIcon: ({ focused }) => <AddIcon focused={focused} />,
             }}
