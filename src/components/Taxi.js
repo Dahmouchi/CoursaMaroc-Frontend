@@ -1,23 +1,28 @@
-import React, { useState } from "react";
-//import CircularProgress from 'react-native-circular-progress-indicator';
+import React, { useState,useRef } from "react";
 import {
   StyleSheet,
   Text,
   View,
   Pressable,
 } from "react-native";
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
 import { MaterialIcons} from "@expo/vector-icons";
 import { COLORS, SIZES } from "../helpers/constants";
-const Taxi = ({ item, index }) => {
+const Taxi = ({ item, index,onPress }) => {
   const [modalVisible, setModalVisible] = useState(false);
-
+  const hide=()=>{setModalVisible(false)}
+  const dateObj = new Date(item.enter_time);
+  const hour = dateObj.getHours();
+  const minute = dateObj.getMinutes();
+  
   return (
-    <Pressable onPress={() => setModalVisible(true)} style={styles.card}>
-   
+    <>
+    <Pressable onPress={onPress} style={styles.card}>
     <View style={styles.taxi_number_container}>
       <View style={styles.taxi_number_before} />
         <View style={styles.taxi_number}>
-          <Text style={styles.taxi_numberText}>{item.taxiNumber} </Text>
+          <Text style={styles.taxi_numberText}>{item.taxi_number} </Text>
         </View>
         <View style={styles.taxi_number_after} />
       </View>
@@ -41,14 +46,14 @@ const Taxi = ({ item, index }) => {
             textAlign: "center",
           }}
         >
-          {item.time}
+          {hour + ":" + minute}
         </Text>
         </View>
 
        <View style={styles.bodyContainer}>
          {/* Order */}
          <View style={styles.order}>
-          <Text style={styles.taxiOrder}> {item.id}</Text>
+          <Text style={styles.taxiOrder}>{index + 1}</Text>
         </View>
 
         {/* dierection */}
@@ -75,7 +80,7 @@ const Taxi = ({ item, index }) => {
 
         {/* Number of passengers */}
         <View style={styles.progress}>
-       
+      
         </View>
 
         {/* Drag Icon */}
@@ -85,87 +90,15 @@ const Taxi = ({ item, index }) => {
        </View>
       </View>
     </Pressable>
+    </>
+
   );}
   export default Taxi;
   
 const styles = StyleSheet.create({
-    buttons: {
-      marginTop: 10,
-      flexDirection: "row",
-      justifyContent: "space-between",
-      width: "100%",
-    },
-    chais: {
-      marginVertical: 10,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-    place: {
-      padding: 20,
-      width: "70%",
-      borderWidth: 2,
-      borderColor: "gray",
-      height: 240,
-      borderRadius: 16,
-    },
-    modelInput: {
-      width: "100%",
-      marginHorizontal: 20,
-      height: 50,
-      borderColor: "black",
-      borderWidth: 1,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-    },
-  
-    centeredView: {
-      flex: 1,
-      justifyContent: "flex-end",
-      alignItems: "center",
-      marginTop: 22,
-    },
-    modalView: {
-      width: "100%",
-      height: 550,
-      backgroundColor: "white",
-      borderTopLeftRadius: 30,
-      borderTopRightRadius: 30,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    button: {
-      borderRadius: 8,
-      padding: 10,
-      elevation: 2,
-      width: 150,
-      alignItems: "center",
-    },
-    buttonOpen: {
-      backgroundColor: "#00CD5E",
-    },
-    buttonClose: {
-      backgroundColor: "#FF7755",
-    },
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-    },
-    modalText: {
-      width: "100%",
-      paddingHorizontal: 5,
-      fontFamily: "Cairo",
-      marginTop: 10,
-      textAlign: "right",
-    },
+  containerModal:{
+    height:200
+  },
     container: {
       flex: 1,
       backgroundColor: "#f4f4f4",

@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,7 +6,7 @@ import store from './src/store';
 import { Home ,Settings} from './src/screens/Index';
 import AddIcon from './src/components/AddIcon';
 import AppModal from "./src/components/AppModal"
-import {Entypo,Ionicons} from '@expo/vector-icons'
+import {Ionicons} from '@expo/vector-icons'
 import getFonts from './src/helpers/fonts';
 import { openModal } from './src/store/reducer/ui/ModalSlice';
 
@@ -25,8 +24,6 @@ const screenOptions = {
     background:"#fff"
   }
 }
-
-
 
 export default function App() {
 
