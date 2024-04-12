@@ -16,7 +16,7 @@ export const COLORS = {
     dark : '#323232',
     light : '#f4f4f4',
     white : '#fff',
-    darkText : '1C1C1C',
+    darkText : '#1C1C1C',
     bg : '#ECECEC',
 }
 

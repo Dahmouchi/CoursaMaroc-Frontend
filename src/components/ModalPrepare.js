@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { View, Text,StyleSheet, TextInput ,Image, Pressable} from 'react-native';
+import { View, Text,StyleSheet, TextInput ,Image, Pressable, ScrollView} from 'react-native';
 import { COLORS } from '../helpers/constants';
 import img from "../../assets/car.png"
 import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
+import axiosInstance from '../Axios';
 
 const ModalPrepare = ({ taxi, onClose }) => {
   const renderChairs = () => {
@@ -39,11 +40,19 @@ const ModalPrepare = ({ taxi, onClose }) => {
     );
 
 }
+  const handelDelete=()=>{
+    axiosInstance.delete("/taxi-queue/"+taxi.id).then((res)=>console.log(res.data)).catch((err)=>console.log(err));
+  }
   return (
    <>
    <View style={styles.back} onTouchStart={onClose}>    
    </View>
-  <View style={styles.containerModal}>
+  <ScrollView 
+  // change scrollIndicator style
+
+  
+  
+  style={styles.containerModal}>
      <View style={styles.prepareModal}>
       <View style={styles.line}></View>
       <Text style={styles.label}>رقم الطاكسي</Text>
@@ -65,13 +74,13 @@ const ModalPrepare = ({ taxi, onClose }) => {
         </View>
       </View>
       <View style={styles.deleteContainer}>
-        <Pressable style={styles.delete} >
+        <Pressable style={styles.delete} onPress={()=>{handelDelete();onClose()}} >
           <Text style={styles.textDelete}>حدف</Text>
         </Pressable>
       </View>
       
     </View>
-  </View>
+  </ScrollView>
    </>
   );
 };
@@ -88,7 +97,9 @@ const styles = StyleSheet.create({
     width:"100%",
     justifyContent:"center",
     alignItems:"center",
-    marginTop:50
+    marginTop:50,
+    
+    
   },
   delete:{
     width:300,
@@ -147,16 +158,19 @@ const styles = StyleSheet.create({
     height:"100%",
     backgroundColor:'rgba(0,0,0,0.5)',
     top:0,
-    left:0
+    left:0,
+
   },
   containerModal:{
     height:590,
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
     backgroundColor: 'white', 
+    width:"100%",
+
   },
   prepareModal:{ 
-    padding: 16 
+    padding: 16,
   },
   line:{
     height:4,

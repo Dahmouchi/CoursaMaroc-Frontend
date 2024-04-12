@@ -69,7 +69,6 @@ const Login = () => {
         </View>
         <Text style={styles.forgotPasswordText}>نسيت كلمة المرور؟</Text>
         </View>
-
         
         <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
