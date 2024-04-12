@@ -4,9 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-} from "react-native";import React, { useEffect, useState } from 'react'
+} from "react-native";
+import React, { useEffect, useState } from 'react'
 import Taxi from '../components/Taxi'
-import {useSelector } from "react-redux";
 import ModalPrepare from "../components/ModalPrepare";
 import {Ionicons} from "react-native-vector-icons"
 import { COLORS, SIZES } from "../helpers/constants";
@@ -19,7 +19,9 @@ const Home = () => {
   const [taxis, setTaxis] = useState([]);
   const handleTaxiPress = (taxi) => {
     setSelectedTaxi(taxi);
+
   };
+
 
   useEffect(()=>{
     axiosInstance.get("/taxi-queue")

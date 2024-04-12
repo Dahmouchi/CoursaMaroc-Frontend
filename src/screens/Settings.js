@@ -4,7 +4,6 @@ import { COLORS } from '../helpers/constants'
 import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
 import axiosInstance from '../Axios';
 import Loading from '../components/Loading';
-Loading
 const Settings = () => {
   const [user,setUser]= useState(null)
   useEffect(()=>{
