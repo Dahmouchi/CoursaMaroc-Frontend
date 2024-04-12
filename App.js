@@ -12,6 +12,10 @@ import { Ionicons } from "@expo/vector-icons";
 import getFonts from "./src/helpers/fonts";
 import { openModal } from "./src/store/reducer/ui/ModalSlice";
 import { COLORS } from "./src/helpers/constants";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useState } from 'react';
+import Login from './src/screens/auth/Login';
+import MainTabScreen from './MainTabScreen';
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
