@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import store from './src/store';
 import AppModal from "./src/components/AppModal"
-import {Entypo,Ionicons} from '@expo/vector-icons'
+import {Ionicons} from '@expo/vector-icons'
 import getFonts from './src/helpers/fonts';
 import { openModal } from './src/store/reducer/ui/ModalSlice';
 import { createStackNavigator } from "@react-navigation/stack";

@@ -8,10 +8,6 @@ const AddIcon = ({ focused }) => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-    }, [])
-
     if (focused) {
       return (
         <View
