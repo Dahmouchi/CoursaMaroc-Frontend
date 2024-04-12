@@ -11,7 +11,6 @@ const store = configureStore({
         products: ProductsSlice,
         modal: ModalSlice,
         user: UserSlice,
-
     }
 });
 
