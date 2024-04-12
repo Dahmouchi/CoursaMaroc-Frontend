@@ -16,6 +16,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useState } from 'react';
 import Login from './src/screens/auth/Login';
 import MainTabScreen from './MainTabScreen';
+import { GestureHandlerRootView} from 'react-native-gesture-handler'
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
@@ -38,7 +39,6 @@ const screenOptions = {
 const Stack = createStackNavigator();
 
 
-
 export default function App() {
   const [logged, setLogged] = useState(false);
   const fonts = getFonts();
@@ -50,6 +50,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <AppModal />
+    <GestureHandlerRootView style={{ flex: 1 }}>
     
     <NavigationContainer>
     <Stack.Navigator screenOptions={screenOptions}>
@@ -63,6 +64,7 @@ export default function App() {
       )}
       </Stack.Navigator>
     </NavigationContainer>
+    </GestureHandlerRootView>
     </Provider>
   );
 }
