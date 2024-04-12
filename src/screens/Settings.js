@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 
 const Settings = () => {
   return (
     <View>
       <Text>Settings</Text>
+      <TextInput placeholder="Name" />
     </View>
   )
 }

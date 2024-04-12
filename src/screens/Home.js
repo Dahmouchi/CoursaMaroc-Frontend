@@ -11,20 +11,23 @@ import ModalPrepare from "../components/ModalPrepare";
 import {Ionicons} from "react-native-vector-icons"
 import { COLORS, SIZES } from "../helpers/constants";
 import axiosInstance from "../Axios";
-
+import { useNavigation } from '@react-navigation/native';
 const Home = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const [selectedTaxi, setSelectedTaxi] = React.useState(null);
   const data = useSelector((state) => state.products.products);
   const [taxis, setTaxis] = useState([]);
-
   const [products, setProducts] = React.useState(data);
   const [ModalFocused,setModalFocused]=useState(false);
   const show=()=>{setModalFocused(true)}
   const hide=()=>{setModalFocused(false)}
+  const navigation = useNavigation();
+
   const handleTaxiPress = (taxi) => {
     setSelectedTaxi(taxi);
+
   };
+
 
   useEffect(()=>{
     axiosInstance.get("/taxi-queue")
@@ -37,8 +40,6 @@ const Home = () => {
     });
   },[])
     return (
-    
-   
       <View style={styles.home}>
         <View style={styles.headerContainer}>
           <View style={styles.header}>

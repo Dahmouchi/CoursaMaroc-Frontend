@@ -13,19 +13,21 @@ import { openModal } from './src/store/reducer/ui/ModalSlice';
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
-  tabBarShowLabel:false,
-  headerShown:false,
-  tabBarStyle:{
-    position:"absolut",
-    bottom:0,
-    right:0,
-    left:0,
-    elevation:0,
-    height:60,
-    background:"#fff"
-  }
-}
-
+  tabBarShowLabel: false,
+  tabBarHideOnKeyboard: true,
+  //hide tab bar
+  tabBarVisible: false,
+  headerShown: false,
+  tabBarStyle: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    elevation: 0,
+    height: 60,
+    backgroundColor: "#fff",
+  },
+};
 const MainTabScreen = () =>(
     <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen
