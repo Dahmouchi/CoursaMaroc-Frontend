@@ -3,6 +3,7 @@ import { View, Text,StyleSheet, TextInput ,Image, Pressable} from 'react-native'
 import { COLORS } from '../helpers/constants';
 import img from "../../assets/car.png"
 import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
+import axiosInstance from '../Axios';
 
 const ModalPrepare = ({ taxi, onClose }) => {
   const renderChairs = () => {
@@ -39,6 +40,9 @@ const ModalPrepare = ({ taxi, onClose }) => {
     );
 
 }
+  const handelDelete=()=>{
+    axiosInstance.delete("/taxi-queue/"+taxi.id).then((res)=>console.log(res.data)).catch((err)=>console.log(err));
+  }
   return (
    <>
    <View style={styles.back} onTouchStart={onClose}>    
@@ -65,7 +69,7 @@ const ModalPrepare = ({ taxi, onClose }) => {
         </View>
       </View>
       <View style={styles.deleteContainer}>
-        <Pressable style={styles.delete} >
+        <Pressable style={styles.delete} onPress={()=>{handelDelete();onClose()}} >
           <Text style={styles.textDelete}>حدف</Text>
         </Pressable>
       </View>

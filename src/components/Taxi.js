@@ -4,14 +4,11 @@ import {
   Text,
   View,
   Pressable,
+  Image,
 } from "react-native";
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-
-import { MaterialIcons} from "@expo/vector-icons";
+import drag from "../../assets/Vector.png"
 import { COLORS, SIZES } from "../helpers/constants";
 const Taxi = ({ item, index,onPress }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const hide=()=>{setModalVisible(false)}
   const dateObj = new Date(item.enter_time);
   const hour = dateObj.getHours();
   const minute = dateObj.getMinutes();
@@ -85,7 +82,7 @@ const Taxi = ({ item, index,onPress }) => {
 
         {/* Drag Icon */}
         <View style={styles.drag}>
-          <MaterialIcons name="drag-indicator" size={24} color="black" />
+          <Image source={drag}/>
         </View>
        </View>
       </View>

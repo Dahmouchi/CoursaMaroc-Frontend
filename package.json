@@ -12,6 +12,7 @@
     "@expo-google-fonts/cairo": "^0.2.3",
     "@expo-google-fonts/poppins": "^0.2.3",
     "@gorhom/bottom-sheet": "^4.6.1",
+    "@react-native-community/blur": "^4.4.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@reduxjs/toolkit": "^2.2.3",
