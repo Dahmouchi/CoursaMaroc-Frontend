@@ -1,4 +1,3 @@
-// src/store/reducers/userReducer.js
 
 import { createSlice } from '@reduxjs/toolkit';
 

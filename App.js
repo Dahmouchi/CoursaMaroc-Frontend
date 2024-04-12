@@ -3,16 +3,18 @@ import { StyleSheet, Text, View , SafeAreaView} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Provider } from "react-redux";
+import { Provider,useSelector } from "react-redux";
 import store from './src/store';
 import AppModal from "./src/components/AppModal"
 import {Ionicons} from '@expo/vector-icons'
 import getFonts from './src/helpers/fonts';
 import { openModal } from './src/store/reducer/ui/ModalSlice';
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainTabScreen from './MainTabScreen';
 import Login from './src/screens/auth/Login'
+
+
 
 
 
@@ -38,9 +40,24 @@ const Stack = createStackNavigator();
 export default function App() {
   const [logged, setLogged] = useState(false);
   const fonts = getFonts();
+  // useEffect(()=>{
+  //   if(!logged){
+  //     const dam = useSelector(state => state.token);
+  //     if(dam)
+  //     {
+  //       setLogged(true);
+  //     }
+  //   }
+  // },[state=>state.token])
+  
+  
+  
+  
+  
 
   if (!fonts) {
     return <Text> loading .. </Text>;
+    
   }
 
   return (

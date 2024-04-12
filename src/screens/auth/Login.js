@@ -16,25 +16,29 @@ const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
 
+
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://coursamaroc.local:8000/api/login', {
+      const response = await axios.post("http://192.168.0.111:8001/api/login", {
         
         phone: phoneNumber,
         password: password
       },
       );
-      consolel.log(response);
+      //consolel.log(response);
       const { token, user } = response.data;
       // console.log(token);
-      // console.log(user);
+       console.log(user);
+       console.log(token)
 
       dispatch(loginSuccess({ user, token }));
 
+      
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
+  
 
   
   return (
@@ -104,12 +108,11 @@ const styles = StyleSheet.create({
   },
   Mtext:{
     textAlign: 'center',
-    fontFamily: 'Cairo',
+    fontFamily: 'Cairo700',
     fontSize: 32,
     fontStyle: 'normal',
     lineHeight: 40,
     color: '#00CD5E',
-    fontWeight: '700',
     marginBottom:39,
 
   },
