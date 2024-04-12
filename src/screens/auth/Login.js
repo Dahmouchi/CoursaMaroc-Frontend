@@ -1,13 +1,42 @@
-import { View, Image, TextInput, TouchableOpacity, Text, Button, StyleSheet ,SafeAreaView} from 'react-native'
-import React ,{useState} from 'react'
-import { Entypo } from '@expo/vector-icons'; // Import the Entypo icon librar
+import { View, Image, TextInput, TouchableOpacity, Text, Button, StyleSheet ,SafeAreaView} from 'react-native';
+import React ,{useState} from 'react';
+import { Entypo } from '@expo/vector-icons'; 
+import axios from 'axios'; 
+import { loginSuccess } from "../../store/reducer/userSlice"; 
+
+import { useDispatch } from 'react-redux';
 
 
 
 const Login = () => {
+  
+
+  const dispatch = useDispatch(); // Initialize useDispatch hook
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://coursamaroc.local:8000/api/login', {
+        
+        phone: phoneNumber,
+        password: password
+      },
+      );
+      consolel.log(response);
+      const { token, user } = response.data;
+      // console.log(token);
+      // console.log(user);
+
+      dispatch(loginSuccess({ user, token }));
+
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  
   return (
     <SafeAreaView style={styles.container}>
       <View >
@@ -26,7 +55,7 @@ const Login = () => {
           <TextInput
             placeholder="Password"
             style={styles.passwordInput}
-            secureTextEntry={!passwordVisible} // Hide or show password based on state
+            secureTextEntry={!passwordVisible} 
             onChangeText={setPassword}
             value={password}
           />
@@ -38,7 +67,7 @@ const Login = () => {
         </View>
 
         
-        <TouchableOpacity onPress={() => console.log('Login button pressed')}  style={styles.login}>
+        <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
           </TouchableOpacity>
         <Text style={styles.signUpText}>ليس لديك حساب؟ <Text style={styles.txtpart}>أنشئ حسابك</Text></Text>

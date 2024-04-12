@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TextInput, //ToastAndroid, 
+TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store/reducer/ProductsSlice";
@@ -39,7 +40,7 @@ const AddTaxi = () => {
           })
       );
       // show toast
-      ToastAndroid.show("Taxi added", ToastAndroid.SHORT);
+     // ToastAndroid.show("Taxi added", ToastAndroid.SHORT);
       
       setTo("");
       setTaxiNumber("");
