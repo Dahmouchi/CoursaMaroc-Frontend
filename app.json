@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CoursaMaroc-frontend",
-    "slug": "CoursaMaroc-frontend",
+    "slug": "coursama-eSyeNy13dVUUPV5FgbBko",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,13 +21,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.achrafamrane.coursamaeSyeNy13dVUUPV5FgbBko"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "798ae4f2-ebdd-406c-9846-642268abac3f"
+      }
+    },
+    "owner": "achrafamrane",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/798ae4f2-ebdd-406c-9846-642268abac3f"
+    }
   }
 }

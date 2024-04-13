@@ -29,11 +29,11 @@ const Login = () => {
       const { token, user } = response.data;
       // console.log(token);
        console.log(user);
-       console.log(token)
+       console.log(token);
 
       dispatch(loginSuccess({ user, token }));
 
-      
+
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -69,7 +69,6 @@ const Login = () => {
         </View>
         <Text style={styles.forgotPasswordText}>نسيت كلمة المرور؟</Text>
         </View>
-
         
         <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
