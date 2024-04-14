@@ -22,12 +22,21 @@ const Home = () => {
 
   };
 
-
+  const handelDelete=()=>{
+    if (!selectedTaxi) return; // Ensure a taxi is selected
+    axiosInstance.delete("/taxi-queue/"+selectedTaxi.id)
+      .then((res)=>{
+        console.log(res.data)
+        setRefreshing(true);
+      })
+      .catch((err)=>console.log(err));
+  }
   useEffect(()=>{
     axiosInstance.get("/taxi-queue")
     .then(response => {
       console.log(response.data); // Handle the response data here
       setTaxis(response.data);
+      setRefreshing(false);
     },[taxis])
     .catch(error => {
       console.error("Error:", error);
@@ -57,12 +66,11 @@ const Home = () => {
                   setRefreshing(false);
                 }, 2000);
               }}
-            />
-            
+            /> 
           }
           refreshing={refreshing}
         />
-     {selectedTaxi && <ModalPrepare taxi={selectedTaxi} onClose={() => setSelectedTaxi(null)} />}
+     {selectedTaxi && <ModalPrepare taxi={selectedTaxi} onClose={() => setSelectedTaxi(null)} onDelete={handelDelete}/>}
    </View>
   )
 }

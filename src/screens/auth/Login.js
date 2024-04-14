@@ -51,7 +51,10 @@ export default Login
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECECEC'
+    backgroundColor: '#ECECEC',
+    width:"100%",
+    height:"100%",
+    alignItems:"center"
   },
   image: {
     width: 280,
@@ -74,13 +77,12 @@ const styles = StyleSheet.create({
   },
   Mtext:{
     textAlign: 'center',
-    fontFamily: 'Cairo',
+    fontFamily: 'Cairo700',
     fontSize: 32,
     fontStyle: 'normal',
     lineHeight: 40,
     color: '#00CD5E',
-    fontWeight: '700',
-    marginBottom:39,
+        marginBottom:39,
 
   },
   input: {
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     marginLeft: 10,
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 12,
     fontStyle: 'normal',
     textAlign: 'right',
@@ -134,14 +136,12 @@ const styles = StyleSheet.create({
   },
   signUpText: {
     textAlign: 'right',
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 14,
     fontStyle: 'normal',
     lineHeight: 22,
     color: '#3B4054',
     marginRight:51,
-    fontWeight: '400',
-
   },
   txtpart:{
     color: '#00CD5E',
@@ -165,12 +165,10 @@ const styles = StyleSheet.create({
     flexShrink:0,
   },
   loginTxt:{
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 16,
     fontStyle: 'normal',
     lineHeight: 24,
     color: '#FFF',
-    fontWeight: '400',
-
   },
 })
