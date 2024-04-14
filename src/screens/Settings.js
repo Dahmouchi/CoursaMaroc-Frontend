@@ -4,18 +4,26 @@ import { COLORS } from '../helpers/constants'
 import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
 import axiosInstance from '../Axios';
 import Loading from '../components/Loading';
+import { useSelector } from 'react-redux';
 const Settings = () => {
   const [user,setUser]= useState(null)
-  useEffect(()=>{
-    axiosInstance.get("/user")
+  const token = useSelector(state => state.user.token); // Accessing the token from the Redux store
+  const useri = useSelector(state => state.user.user); // Accessing the token from the Redux store
+
+  {/*useEffect(()=>{
+    axiosInstance.get("http://192.168.12.15:8000/api/user",
+    { headers: {
+       "Accept": "application/json",
+       "Authorization" : `Bearer ${token}`
+     }})
     .then(response => {
       setUser(response.data);
     })
     .catch(error => {
       console.error("Error:", error);
     });
-  },[])
-  if(!user)
+  },[])*/}
+  if(!useri)
   return <Loading />
   return (
   <ImageBackground
@@ -36,8 +44,8 @@ const Settings = () => {
             />
         </View>
         <View style={styles.nameC}>
-          <Text style={styles.name}>{user.name}</Text>
-          <Text style={styles.name}>{user.phone}</Text>
+          <Text style={styles.name}>{useri.name}</Text>
+          <Text style={styles.name}>{useri.phone}</Text>
 
         </View>
         <View style={styles.items}>

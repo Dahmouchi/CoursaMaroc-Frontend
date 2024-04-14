@@ -1,12 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Settings } from './src/screens/Index';
-import AddIcon from './src/components/AddIcon';
+import { Home, Settings } from '../screens/Index';
+import AddIcon from '../components/AddIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
-import store from './src/store';
-import { openModal } from './src/store/reducer/ui/ModalSlice';
+import store from '../store';
+import { openModal } from '../store/reducer/ui/ModalSlice';
 
 
 
