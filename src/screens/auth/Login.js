@@ -23,11 +23,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-<<<<<<< HEAD
       const response = await axios.post("http://192.168.0.111:8001/api/login", {
-=======
-      const response = await axios.post("http://192.168.12.15:8000/api/login", {
->>>>>>> d17746bbb0b843f94b2a0c82fe2c3cd35911de6e
         phone: phoneNumber,
         password: password
       },

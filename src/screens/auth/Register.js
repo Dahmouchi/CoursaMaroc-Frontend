@@ -26,7 +26,8 @@ export default function Register({  }) {
     const [name, setName] = useState('');
     const [password, setPassword] =useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const dispatch = useDispatch(); // Initialize useDispatch hook
+    const dispatch = useDispatch(); 
+    
     const navigation = useNavigation(); 
 
 
@@ -86,7 +87,7 @@ export default function Register({  }) {
         dispatch(loginSuccess({ user, token }));
 
   
-        navigation.navigate('Login');
+       navigation.navigate('MainTabScreen');
 
       } catch (error) {
         console.error('Login failed:', error);
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
 
   },
   inputContainer: {
-    marginBottom:39,
+    marginBottom:10,
     marginLeft: 42,
     marginRight:42,
     display: 'flex',
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
     width:280,
     borderWidth: 1,
     borderColor: '#00CD5E',
+    marginBottom:5,
 
     backgroundColor: '#F5F9FE',
     borderRadius: 14,
