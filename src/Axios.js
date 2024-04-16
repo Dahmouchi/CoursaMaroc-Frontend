@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const baseURL = "http://192.168.12.15:8000/api";
+const baseURL = "http://192.168.0.111:8001/api";
 
 const axiosInstance = axios.create({
   baseURL,
   headers: {
     "Accept": "application/json",
-    "Authorization" : " Bearer 3|Di92xfugKYb842pQZL2P491BrL2mHYc9ss8r1T2x616842d8"
+    "Authorization" : " Bearer 31|1V7yFvpyYax7fKQ2zkrzY2HIKWzicg7E56o3gWaf829e390c"
   },
 });
 

@@ -23,7 +23,11 @@ const initialState = {
   isLoading: false,
 };
 
+<<<<<<< HEAD
 const UserSlice = createSlice({
+=======
+const userSlice = createSlice({
+>>>>>>> origin/dev
   name: "user",
   initialState,
   reducers: {
@@ -51,5 +55,10 @@ const UserSlice = createSlice({
   },
 });
 
+<<<<<<< HEAD
 export const { loginSuccess } = UserSlice.actions;
 export default UserSlice.reducer;
+=======
+export const { loginSuccess } = userSlice.actions;
+export default userSlice.reducer;
+>>>>>>> origin/dev

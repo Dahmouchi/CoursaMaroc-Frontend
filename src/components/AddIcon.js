@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 const AddIcon = ({ focused }) => {
   const dispatch = useDispatch();
-
   const [keyboardStatus, setKeyboardStatus] = useState(false);
 
   useEffect(() => {
