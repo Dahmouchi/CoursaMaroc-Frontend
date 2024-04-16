@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text,StyleSheet, TextInput ,Image, Pressable, ScrollView} from 'react-native';
 import { COLORS } from '../helpers/constants';
 import img from "../../assets/car.png"
-import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
-import axiosInstance from '../Axios';
-
-const ModalPrepare = ({ taxi, onClose }) => {
+import { Ionicons  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
+import Chair from "../../assets/Chair.js"
+const ModalPrepare = ({ taxi, onClose ,onDelete}) => {
   const renderChairs = () => {
     const chairs = [];
     const numPassengers = taxi.passengers || 0; // Assuming numPassengers is a property in the taxi object
@@ -19,13 +18,13 @@ const ModalPrepare = ({ taxi, onClose }) => {
         // Determine the color of the chair based on the number of passengers
         const chairColor = chairNumber <= numPassengers ? "#00CD5E" : 'gray';
         return (
-          <FontAwesome5
-            key={chairNumber}
-            name="chair"
-            size={40}
-            color={chairColor}
-            style={styles.chairIcon}
-          />
+          <View style={styles.chairIcon}>
+             <Chair
+              key={chairNumber}
+              props={chairColor}
+            />
+          </View>
+         
         );
       });
 
@@ -40,47 +39,46 @@ const ModalPrepare = ({ taxi, onClose }) => {
     );
 
 }
-  const handelDelete=()=>{
-    axiosInstance.delete("/taxi-queue/"+taxi.id).then((res)=>console.log(res.data)).catch((err)=>console.log(err));
-  }
+const handleDelete = () => {
+  onDelete();
+};
   return (
    <>
    <View style={styles.back} onTouchStart={onClose}>    
    </View>
-  <ScrollView 
-  // change scrollIndicator style
-
-  
-  
-  style={styles.containerModal}>
-     <View style={styles.prepareModal}>
-      <View style={styles.line}></View>
-      <Text style={styles.label}>رقم الطاكسي</Text>
-      <TextInput   keyboardType="numeric" value={taxi.taxi_number.toString()} style={styles.modalInput} textAlign="right"/>
-      <Text style={styles.label}>الوجة</Text>
-      <TextInput value={taxi.to} style={styles.modalInput} textAlign="right"/>
-      <View style={styles.body}>
-        <View style={styles.car}>
-          <Image source={img} style={styles.img}/>
-          <View style={styles.containerss}>{renderChairs()}</View>
+    <View style={styles.containerModal}>  
+      <View style={styles.prepareModal}>
+        <View style={styles.line}></View>
+        <Text style={styles.label}>رقم الطاكسي</Text>
+        <TextInput   keyboardType="numeric" value={taxi.taxi_number.toString()} style={styles.modalInput} textAlign="right"/>
+        <Text style={styles.label}>الوجة</Text>
+        <TextInput value={taxi.to} style={styles.modalInput} textAlign="right"/>
+        <View style={styles.body}>
+          <View style={styles.car}>
+            <Image source={img} style={styles.img}/>
+            <View style={styles.containerss}>{renderChairs()}</View>
+          </View>
+          <View style={styles.addRemove}>
+            <Pressable style={styles.add}>
+              <Ionicons name="person-add-sharp" color="white" size={40}/>
+            </Pressable>
+            <Pressable style={styles.remove} >
+            <Ionicons name="person-remove-sharp" color="white" size={40}/>
+            </Pressable>
+          </View>
         </View>
-        <View style={styles.addRemove}>
-          <Pressable style={styles.add}>
-            <Ionicons name="person-add-sharp" color="white" size={40}/>
+        <View style={styles.deleteContainer}>
+          <Pressable style={styles.delete} onPress={()=>{handleDelete();onClose()}} >
+            <Text style={styles.textDelete}>حدف</Text>
           </Pressable>
-          <Pressable style={styles.remove} >
-          <Ionicons name="person-remove-sharp" color="white" size={40}/>
+        </View>
+        <View style={styles.checkContainer}>
+          <Pressable style={styles.check} onPress={()=>{handleDelete();onClose()}} >
+            <Text style={styles.textDelete}>إرسال</Text>
           </Pressable>
         </View>
       </View>
-      <View style={styles.deleteContainer}>
-        <Pressable style={styles.delete} onPress={()=>{handelDelete();onClose()}} >
-          <Text style={styles.textDelete}>حدف</Text>
-        </Pressable>
-      </View>
-      
     </View>
-  </ScrollView>
    </>
   );
 };
@@ -93,13 +91,25 @@ const styles = StyleSheet.create({
     marginBottom:5,
     color:"white"
   },
+  checkContainer:{
+    width:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop:10,
+  },
+  check:{
+    width:300,
+    height:44,
+    backgroundColor:"#00CD5E",
+    borderRadius:8,
+    justifyContent:"center",
+    alignItems:"center"
+  },
   deleteContainer:{
     width:"100%",
     justifyContent:"center",
     alignItems:"center",
     marginTop:50,
-    
-    
   },
   delete:{
     width:300,
@@ -116,7 +126,6 @@ const styles = StyleSheet.create({
   },
   chairIcon: {
     marginTop:20,
-    marginRight: 5, // Adjust spacing between chairs if needed
   },
   containerss: {
     flexDirection: 'column',
@@ -162,7 +171,7 @@ const styles = StyleSheet.create({
 
   },
   containerModal:{
-    height:590,
+    height:700,
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
     backgroundColor: 'white', 
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
     marginBottom:5
   },
   img:{
-    width:182,
+    width:184,
     height:278
   }
   });
