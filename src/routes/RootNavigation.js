@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../store/reducer/userSlice";
-
+import Register from "../screens/auth/Register"
 const screenOptions = {
   tabBarShowLabel: false,
   tabBarHideOnKeyboard: true,
@@ -45,7 +45,9 @@ const RootNavigation = () => {
       />
       ) : (
         <Stack.Screen name="Login" component={Login}  />
+        
       )}
+      <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   )

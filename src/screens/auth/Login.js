@@ -3,6 +3,8 @@ import React ,{useState} from 'react';
 import { Entypo } from '@expo/vector-icons'; 
 import axios from 'axios'; 
 import { loginSuccess } from "../../store/reducer/userSlice"; 
+import { useNavigation } from '@react-navigation/native';
+
 
 import { useDispatch } from 'react-redux';
 
@@ -15,11 +17,13 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation(); // Use useNavigation hook to get the navigation object
+
 
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://192.168.1.11:8000/api/login", {
+      const response = await axios.post("http://192.168.0.111:8001/api/login", {
         phone: phoneNumber,
         password: password
       },
@@ -72,7 +76,8 @@ const Login = () => {
         <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
           </TouchableOpacity>
-        <Text style={styles.signUpText}>ليس لديك حساب؟ <Text style={styles.txtpart}>أنشئ حسابك</Text></Text>
+        <Text style={styles.signUpText}>ليس لديك حساب؟ <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text style={styles.txtpart}>انشئ حسابك</Text></TouchableOpacity>
+        </Text>
     </View>
     </SafeAreaView>
   )
