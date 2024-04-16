@@ -1,13 +1,45 @@
-import { View, Image, TextInput, TouchableOpacity, Text, Button, StyleSheet ,SafeAreaView} from 'react-native'
-import React ,{useState} from 'react'
-import { Entypo } from '@expo/vector-icons'; // Import the Entypo icon librar
+import { View, Image, TextInput, TouchableOpacity, Text, Button, StyleSheet ,SafeAreaView} from 'react-native';
+import React ,{useState} from 'react';
+import { Entypo } from '@expo/vector-icons'; 
+import axios from 'axios'; 
+import { loginSuccess } from "../../store/reducer/userSlice"; 
+
+import { useDispatch } from 'react-redux';
 
 
 
 const Login = () => {
+  
+
+  const dispatch = useDispatch(); // Initialize useDispatch hook
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://192.168.12.15:8000/api/login", {
+        phone: phoneNumber,
+        password: password
+      },
+      );
+      //consolel.log(response);
+      const { token, user } = response.data;
+      // console.log(token);
+       console.log(user);
+       console.log(token)
+
+      dispatch(loginSuccess({ user, token }));
+
+      
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+  
+
+  
   return (
     <SafeAreaView style={styles.container}>
       <View >
@@ -26,7 +58,7 @@ const Login = () => {
           <TextInput
             placeholder="Password"
             style={styles.passwordInput}
-            secureTextEntry={!passwordVisible} // Hide or show password based on state
+            secureTextEntry={!passwordVisible} 
             onChangeText={setPassword}
             value={password}
           />
@@ -37,7 +69,7 @@ const Login = () => {
         <Text style={styles.forgotPasswordText}>نسيت كلمة المرور؟</Text>
         </View>
         
-        <TouchableOpacity onPress={() => console.log('Login button pressed')}  style={styles.login}>
+        <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
           </TouchableOpacity>
         <Text style={styles.signUpText}>ليس لديك حساب؟ <Text style={styles.txtpart}>أنشئ حسابك</Text></Text>
@@ -51,7 +83,10 @@ export default Login
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECECEC'
+    backgroundColor: '#ECECEC',
+    width:"100%",
+    height:"100%",
+    alignItems:"center"
   },
   image: {
     width: 280,
@@ -74,12 +109,11 @@ const styles = StyleSheet.create({
   },
   Mtext:{
     textAlign: 'center',
-    fontFamily: 'Cairo',
+    fontFamily: 'Cairo700',
     fontSize: 32,
     fontStyle: 'normal',
     lineHeight: 40,
     color: '#00CD5E',
-    fontWeight: '700',
     marginBottom:39,
 
   },
@@ -123,7 +157,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     marginLeft: 10,
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 12,
     fontStyle: 'normal',
     textAlign: 'right',
@@ -134,14 +168,12 @@ const styles = StyleSheet.create({
   },
   signUpText: {
     textAlign: 'right',
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 14,
     fontStyle: 'normal',
     lineHeight: 22,
     color: '#3B4054',
     marginRight:51,
-    fontWeight: '400',
-
   },
   txtpart:{
     color: '#00CD5E',
@@ -165,12 +197,10 @@ const styles = StyleSheet.create({
     flexShrink:0,
   },
   loginTxt:{
-    fontFamily: 'Poppins',
+    fontFamily: 'Cairo700',
     fontSize: 16,
     fontStyle: 'normal',
     lineHeight: 24,
     color: '#FFF',
-    fontWeight: '400',
-
   },
 })

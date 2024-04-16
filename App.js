@@ -15,7 +15,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useState } from 'react';
 import Login from './src/screens/auth/Login';
 import MainTabScreen from './MainTabScreen';
-import { GestureHandlerRootView} from 'react-native-gesture-handler'
+import { GestureHandlerRootView} from 'react-native-gesture-handler';
+import setupStation from './src/screens/auth/setupStation';
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
@@ -38,7 +39,7 @@ const screenOptions = {
 const Stack = createStackNavigator();
 
 
-export default function App() {
+/*export default function App() {
   const [logged, setLogged] = useState(true);
   const fonts = getFonts();
 
@@ -76,3 +77,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+*/
+
+export default function App() {
+  const [logged, setLogged] = useState(false); // Mettez cette valeur à false pour tester SetupStation
+  const [isSetupComplete, setIsSetupComplete] = useState(false); // Vous pouvez utiliser cet état pour vérifier si la configuration est terminée
+  const fonts = getFonts();
+
+  if (!fonts) {
+    return <Text> Loading... </Text>;
+  }
+
+  return (
+    <Provider store={store}>
+      <AppModal />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={screenOptions}>
+            {logged ? (
+              // Si l'utilisateur est connecté, montrez l'écran principal
+              <Stack.Screen name="MainTabScreen" component={MainTabScreen} />
+            ) : !isSetupComplete ? (
+              // Si l'utilisateur n'est pas connecté et que la configuration n'est pas terminée, montrez setupStation
+              <Stack.Screen name="SetupStation" component={setupStation} />
+            ) : (
+              // Si l'utilisateur n'est pas connecté mais que la configuration est terminée, montrez l'écran de connexion
+              <Stack.Screen name="Login" component={Login} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </Provider>
+  );
+}

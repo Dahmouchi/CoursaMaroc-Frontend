@@ -11,6 +11,9 @@
   "dependencies": {
     "@expo-google-fonts/cairo": "^0.2.3",
     "@expo-google-fonts/poppins": "^0.2.3",
+    "@expo/cli": "^0.17.8",
+    "@expo/image-utils": "^0.3.9",
+    "@expo/prebuild-config": "^6.7.4",
     "@expo/vector-icons": "^14.0.0",
     "@gorhom/bottom-sheet": "^4.6.1",
     "@react-native-community/blur": "^4.4.0",
@@ -19,7 +22,7 @@
     "@react-navigation/stack": "^6.3.29",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
-    "expo": "~50.0.14",
+    "expo": "^50.0.15",
     "expo-font": "~11.10.3",
     "expo-status-bar": "~1.11.1",
     "expo-updates": "~0.24.12",
@@ -32,7 +35,7 @@
     "react-native-gesture-handler": "~2.14.0",
     "react-native-modal": "^13.0.1",
     "react-native-simple-bottom-sheet": "^1.0.4",
-    "react-native-svg": "^15.1.0",
+    "react-native-svg": "^14.1.0",
     "react-native-vector-icons": "^10.0.3",
     "react-navigation": "^5.0.0",
     "react-redux": "^9.1.0"
