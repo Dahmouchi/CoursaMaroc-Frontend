@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useEffect } from "react";
 import MainTabScreen from "./MainTabScreen";
-import { Login } from "../screens/Index";
+import { Login,Station } from "../screens/Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ const RootNavigation = () => {
       <Stack.Screen name="MainTabScreen" component={MainTabScreen}        
       />
       ) : (
-        <Stack.Screen name="Login" component={Login}  />
+        <Stack.Screen name="Login" component={Station}  />
       )}
       </Stack.Navigator>
     </NavigationContainer>

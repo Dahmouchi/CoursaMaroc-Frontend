@@ -4,7 +4,7 @@ import { COLORS } from '../helpers/constants';
 import img from "../../assets/car.png"
 import { Ionicons  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
 import Chair from "../../assets/Chair.js"
-const ModalPrepare = ({ taxi, onClose ,onDelete}) => {
+const ModalPrepare = ({ taxi, onClose ,onDelete,addPassenger,deletePassenger}) => {
   const renderChairs = () => {
     const chairs = [];
     const numPassengers = taxi.passengers || 0; // Assuming numPassengers is a property in the taxi object
@@ -29,7 +29,7 @@ const ModalPrepare = ({ taxi, onClose ,onDelete}) => {
       });
 
       chairs.push(
-        <View key={row.join('-')} style={styles.rowContainer}>
+        <View key={row.join('-')} style={styles.rowContainer} >
           {rowChairs}
         </View>
       );
@@ -59,10 +59,10 @@ const handleDelete = () => {
             <View style={styles.containerss}>{renderChairs()}</View>
           </View>
           <View style={styles.addRemove}>
-            <Pressable style={styles.add}>
+            <Pressable style={styles.add} onPress={()=>addPassenger()}>
               <Ionicons name="person-add-sharp" color="white" size={40}/>
             </Pressable>
-            <Pressable style={styles.remove} >
+            <Pressable style={styles.remove} onPress={()=>deletePassenger()}>
             <Ionicons name="person-remove-sharp" color="white" size={40}/>
             </Pressable>
           </View>

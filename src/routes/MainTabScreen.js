@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Settings } from '../screens/Index';
+import { Home, Settings,Station } from '../screens/Index';
 import AddIcon from '../components/AddIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';

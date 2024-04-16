@@ -7,16 +7,18 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../store/reducer/ProductsSlice";
 import { closeModal } from "../store/reducer/ui/ModalSlice";
 import moment from "moment";
+import axios from "axios";
 
-const AddTaxi = () => {
+const AddTaxi = ({reload}) => {
   const [to, setTo] = useState("");
   const [taxiNumber, setTaxiNumber] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const token = useSelector(state => state.user.token); // Accessing the token from the Redux store
 
   const handleAddProduct = () => {
     // check if product
@@ -31,7 +33,7 @@ const AddTaxi = () => {
       return;
     }
     // add product
-    dispatch(
+  dispatch(
       addProduct({
         from: "سلا",
         to,
@@ -41,9 +43,20 @@ const AddTaxi = () => {
         time: moment().format("hh:mm"),
       })
     );
+    axios.post("http://192.168.12.15:8000/api/taxi-queue",{
+      taxi_number:taxiNumber,
+      from:"سلا",
+      to:to,
+      passengers:0
+    },{ headers: {
+      "Accept": "application/json",
+      "Authorization" : `Bearer ${token}`
+    }}).then((res) => {
+      console.log(res)
+      reload()
+    }).catch(err => console.log(err))
     // show toast
     ToastAndroid.show("Taxi added", ToastAndroid.SHORT);
-
     setTo("");
     setTaxiNumber("");
     // remove error
