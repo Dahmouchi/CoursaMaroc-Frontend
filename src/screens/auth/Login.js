@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
 
       
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Login failed:', error.response);
     }
   };
   return (

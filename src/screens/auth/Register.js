@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function Register({navigation}) {
+export default function Register() {
 
 
     const [isAnimeted, setIsAnimeted] = useState(false);
@@ -27,7 +27,7 @@ export default function Register({navigation}) {
     const [password, setPassword] =useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const dispatch = useDispatch(); 
-
+    const navigation = useNavigation()
 
 
     
@@ -71,7 +71,7 @@ export default function Register({navigation}) {
 
     const handleLogin = async () => {
       try {
-        const response = await axios.post("http://192.168.0.111:8001/api/register", {
+        const response = await axios.post("http://192.168.12.15:8000/api/register", {
           phone: phoneNumber,
           password: password,
           name: name,
@@ -80,13 +80,8 @@ export default function Register({navigation}) {
         //consolel.log(response);
         const { token, user } = response.data;
         // console.log(token);
-         console.log(user);
-  
-        dispatch(loginSuccess({ user, token }));
-
-  
-       navigation.navigate('MainTabScreen');
-
+         console.log(user);  
+       navigation.navigate('Login');
       } catch (error) {
         console.error('Login failed:', error);
       }

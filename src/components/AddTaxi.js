@@ -13,7 +13,7 @@ import { closeModal } from "../store/reducer/ui/ModalSlice";
 import moment from "moment";
 import axios from "axios";
 
-const AddTaxi = ({reload}) => {
+const AddTaxi = () => {
   const [to, setTo] = useState("");
   const [taxiNumber, setTaxiNumber] = useState("");
   const [error, setError] = useState(null);
