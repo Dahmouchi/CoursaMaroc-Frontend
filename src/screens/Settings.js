@@ -1,17 +1,18 @@
-import { StyleSheet, Text, View,ImageBackground,Image } from 'react-native'
+import { StyleSheet, Text, View,ImageBackground,Image, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { COLORS } from '../helpers/constants'
-import { Ionicons,FontAwesome5  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
+import { Ionicons,FontAwesome5,MaterialIcons  } from '@expo/vector-icons'; // or 'react-native-vector-icons'
 import axiosInstance from '../Axios';
 import Loading from '../components/Loading';
 import { useSelector } from 'react-redux';
-const Settings = () => {
+import axios from 'axios';
+const Settings = ({navigation}) => {
   const [user,setUser]= useState(null)
   const token = useSelector(state => state.user.token); // Accessing the token from the Redux store
   const useri = useSelector(state => state.user.user); // Accessing the token from the Redux store
 
   {/*useEffect(()=>{
-    axiosInstance.get("http://192.168.12.15:8000/api/user",
+    axios.get("http://192.168.12.15:8000/api/user",
     { headers: {
        "Accept": "application/json",
        "Authorization" : `Bearer ${token}`
@@ -23,6 +24,24 @@ const Settings = () => {
       console.error("Error:", error);
     });
   },[])*/}
+  const handelLogout = () => {
+    console.log(token);
+    axios
+      .post(
+        "http://192.168.12.15:8000/api/logout",
+        {},
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
   if(!useri)
   return <Loading />
   return (
@@ -97,7 +116,17 @@ const Settings = () => {
                 <Ionicons name="car" size={30}/>
               </View>  
             </View>
-          </View>
+          </View> 
+          <Pressable style={styles.info1} onPress={()=>handelLogout()}> 
+          <View style={styles.aa} >
+              <View>
+                <Text style={styles.textInfo}> تسجيل الخروج</Text>
+              </View>
+              <View>
+                <MaterialIcons name="logout" size={30}/>
+              </View>  
+            </View>
+          </Pressable>
         </View>
       </View>
     </ImageBackground>
@@ -107,6 +136,15 @@ const Settings = () => {
 export default Settings
 
 const styles = StyleSheet.create({ 
+  info1:{  
+    backgroundColor:COLORS.bg,
+    width:350,
+    height:50,
+    borderRadius:20,
+    justifyContent:"center",
+    alignItems:"flex-end",
+    marginTop:20,
+    },
   line:{
     width:"100%",
     height:1,

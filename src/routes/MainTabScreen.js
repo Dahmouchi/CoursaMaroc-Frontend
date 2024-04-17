@@ -4,13 +4,8 @@ import { Home, Settings,Station } from '../screens/Index';
 import AddIcon from '../components/AddIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-
 import store from '../store';
 import { openModal } from '../store/reducer/ui/ModalSlice';
-
-
-
-
 const Tab = createBottomTabNavigator();
 const screenOptions = {
   tabBarShowLabel: false,

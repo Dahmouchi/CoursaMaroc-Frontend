@@ -3,12 +3,11 @@ import React ,{useState} from 'react';
 import { Entypo } from '@expo/vector-icons'; 
 import axios from 'axios'; 
 import { loginSuccess } from "../../store/reducer/userSlice"; 
-
 import { useDispatch } from 'react-redux';
 
 
 
-const Login = () => {
+const Login = ({navigation}) => {
   
 
   const dispatch = useDispatch(); // Initialize useDispatch hook
@@ -37,9 +36,6 @@ const Login = () => {
       console.error('Login failed:', error);
     }
   };
-  
-
-  
   return (
     <SafeAreaView style={styles.container}>
       <View >
@@ -72,7 +68,8 @@ const Login = () => {
         <TouchableOpacity onPress={handleLogin}  style={styles.login}>
           <Text style={styles.loginTxt}>تسجيل الدخول</Text>
           </TouchableOpacity>
-        <Text style={styles.signUpText}>ليس لديك حساب؟ <Text style={styles.txtpart}>أنشئ حسابك</Text></Text>
+        <Text style={styles.signUpText}>ليس لديك حساب؟ <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text style={styles.txtpart}>انشئ حسابك</Text></TouchableOpacity>
+        </Text>
     </View>
     </SafeAreaView>
   )

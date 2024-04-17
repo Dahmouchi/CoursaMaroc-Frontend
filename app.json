@@ -3,6 +3,7 @@
     "name": "CoursaMaroc-frontend",
     "slug": "coursama-eSyeNy13dVUUPV5FgbBko",
     "version": "1.0.0",
+    "sdkVersion": "50.0.0", 
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../store/reducer/userSlice";
-
+import Register from "../screens/auth/Register"
 const screenOptions = {
   tabBarShowLabel: false,
   tabBarHideOnKeyboard: true,
@@ -23,31 +23,34 @@ const screenOptions = {
     backgroundColor: "#fff",
   },
 };
-
 const Stack = createStackNavigator();
 
 const RootNavigation = () => {
     const dispatch = useDispatch();
     const {user, token, isLogged} = useSelector(state => state.user);
-
     useEffect(() => {
     // get user
     if (token) {
       dispatch(getUser());
+      console.log(user)
     }
     }, []);
 
   return (
     <NavigationContainer>
     <Stack.Navigator screenOptions={screenOptions}>
-    {isLogged ? (
-      <Stack.Screen name="MainTabScreen" component={MainTabScreen}        
-      />
+      {isLogged ? (
+        user.is_station_setup === 1 ? (
+          <Stack.Screen name="MainTabScreen" component={MainTabScreen} />
+        ) : (
+          <Stack.Screen name="Station" component={Station} />
+        )
       ) : (
-        <Stack.Screen name="Login" component={Station}  />
+        <Stack.Screen name="Login" component={Login} />
       )}
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Stack.Screen name="Register" component={Register} />
+    </Stack.Navigator>
+  </NavigationContainer>
   )
 };
 
