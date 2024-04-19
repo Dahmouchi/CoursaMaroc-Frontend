@@ -43,7 +43,7 @@ const AddTaxi = () => {
         time: moment().format("hh:mm"),
       })
     );
-    axios.post("http://192.168.12.15:8000/api/taxi-queue",{
+    axios.post("http://192.168.1.14:8000/api/taxi-queue",{
       taxi_number:taxiNumber,
       from:"سلا",
       to:to,

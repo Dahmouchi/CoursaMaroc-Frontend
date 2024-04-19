@@ -28,7 +28,7 @@ const Settings = ({navigation}) => {
     console.log(token);
     axios
       .post(
-        "http://192.168.12.15:8000/api/logout",
+        "http://192.168.1.14:8000/api/logout",
         {},
         {
           headers: {

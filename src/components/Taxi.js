@@ -8,10 +8,17 @@ import {
 } from "react-native";
 import drag from "../../assets/Vector.png"
 import { COLORS, SIZES } from "../helpers/constants";
+import CircularProgress from "./CircularProgress";
 const Taxi = ({ item, index,onPress }) => {
   const dateObj = new Date(item.enter_time);
   const hour = dateObj.getHours();
   const minute = dateObj.getMinutes();
+  
+
+  const maxProgress = 6;
+  const numPassengers = item.passengers;
+  console.log(numPassengers);
+  const progress = (numPassengers / maxProgress) * 100;
   
   return (
     <>
@@ -77,7 +84,13 @@ const Taxi = ({ item, index,onPress }) => {
 
         {/* Number of passengers */}
         <View style={styles.progress}>
-      
+        <CircularProgress progress={progress} strokeWidth={8} size={40}
+          progressCircleColor={COLORS.green}
+          outerCircleColor={COLORS.dark}
+          labelColor={COLORS.darkText}
+          customNumber={numPassengers}
+          labelSize={14}
+          />
         </View>
 
         {/* Drag Icon */}

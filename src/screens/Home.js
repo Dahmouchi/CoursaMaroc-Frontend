@@ -14,6 +14,7 @@ import axiosInstance from "../Axios";
 import Loading from "../components/Loading";
 import axios from "axios";
 import {useSelector } from "react-redux";
+import CircularProgress from "../components/CircularProgress";
 
 
 const Home = () => {
@@ -27,7 +28,7 @@ const Home = () => {
 
   const handelDelete=()=>{
     if (!selectedTaxi) return; // Ensure a taxi is selected
-    axios.delete("http://192.168.12.15:8000/api/taxi-queue/"+selectedTaxi.id,{
+    axios.delete("http://192.168.1.14:8000/api/taxi-queue/"+selectedTaxi.id,{
       headers: {
       "Accept": "application/json",
       "Authorization" : `Bearer ${token}`
@@ -39,7 +40,7 @@ const Home = () => {
       .catch((err)=>console.log(err));
   }
   useEffect(()=>{
-    axios.get("http://192.168.12.15:8000/api/taxi-queue",
+    axios.get("http://192.168.1.14:8000/api/taxi-queue",
    { headers: {
       "Accept": "application/json",
       "Authorization" : `Bearer ${token}`
@@ -59,6 +60,7 @@ const Home = () => {
   const deletePassenger =()=>{
     console.log("deletePassengerd")
   }
+
   if(!taxis)
   return <Loading />
     return (
@@ -69,6 +71,9 @@ const Home = () => {
             <Text style={styles.headerText}>القائمة</Text>
           </View>
         </View>
+
+     
+        
         <FlatList
           data={taxis}
           renderItem={({ item, index }) => <Taxi item={item} index={index} onPress={() => handleTaxiPress(item)}/>}
